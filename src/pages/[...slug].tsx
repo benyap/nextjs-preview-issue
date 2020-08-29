@@ -1,23 +1,39 @@
 import React, { FC } from "react";
-import { GetStaticProps, GetStaticPropsContext } from "next";
+import Head from "next/head";
+import { GetStaticProps, GetStaticPaths } from "next";
 
 import { PAGES } from "../data";
 
-const Page: FC<{ title: string; error?: string }> = (props) => (
+import { Navigation } from "../components/Navigation";
+import { Preview } from "../components/Preview";
+
+const Page: FC<{ title: string; error?: string; preview?: any }> = ({
+  title,
+  error,
+  preview,
+}) => (
   <div>
-    <h1>{props.title}</h1>
-    <p color="red">{props.error}</p>
+    <Head>
+      <title>
+        {title}
+        {Boolean(preview) ? " (preview)" : ""}
+      </title>
+    </Head>
+    <h1>{title}</h1>
+    <p color="red">{error}</p>
+    <Navigation />
+    <hr />
+    <Preview />
   </div>
 );
 
 export default Page;
 
-const ROOT = "/";
-
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   // Retrieve all possible static paths from the CMS.
-  const pages = PAGES.filter((page) => page.status === "published");
-  const paths = pages.map((page) => page.slug).filter((path) => path !== ROOT);
+  const paths = PAGES.filter((page) => page.status === "published").map(
+    (page) => page.slug
+  );
   return {
     paths,
     fallback: false,
@@ -42,7 +58,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       preview: context.preview,
       error: context.preview
-        ? `Path: ${path} Requester: ${context.previewData?.user}`
+        ? `Path: ${path} | Requester: ${context.previewData?.user}`
         : `Server failed to process page at path ${path}`,
     },
   };

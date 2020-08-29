@@ -1,9 +1,19 @@
 import React, { FC } from "react";
+import Head from "next/head";
 
-const IndexPage: FC = (props) => {
+import { Navigation } from "../components/Navigation";
+import { Preview } from "../components/Preview";
+
+const IndexPage: FC<{ preview?: any }> = ({ preview }) => {
   return (
     <div>
+      <Head>
+        <title>Home{Boolean(preview) ? " (preview)" : ""}</title>
+      </Head>
       <h1>Index Page</h1>
+      <Navigation />
+      <hr />
+      <Preview />
     </div>
   );
 };
