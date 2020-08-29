@@ -4,6 +4,7 @@ import Link from "next/link";
 export const Navigation: FC = () => {
   return (
     <nav>
+      <b>Catch all routes ([...slug])</b>
       <ul>
         <li>
           <Link passHref href="/">
@@ -28,6 +29,19 @@ export const Navigation: FC = () => {
         <li>
           <Link passHref href="/draft">
             <a>Draft (preview only)</a>
+          </Link>
+        </li>
+      </ul>
+      <b>Dynamic routes (/blog/[id])</b>
+      <ul>
+        <li>
+          <Link passHref href="/blog/first-post">
+            <a>First Post</a>
+          </Link>
+        </li>
+        <li>
+          <Link passHref href="/blog/second-post">
+            <a>Second Post (preview only)</a>
           </Link>
         </li>
       </ul>

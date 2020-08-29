@@ -48,3 +48,18 @@ export const PAGES: Page[] = [
     status: "draft",
   },
 ];
+
+export const POSTS: Page[] = [
+  {
+    id: "first-post",
+    slug: "/blog/first-post",
+    title: "First Post",
+    status: "published",
+  },
+  {
+    id: "second-post",
+    slug: "/blog/second-post",
+    title: "Second Post",
+    status: "draft",
+  },
+];
