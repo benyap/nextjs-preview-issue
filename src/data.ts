@@ -1,3 +1,6 @@
+/**
+ * Mapping of accepted tokens to sample user ids.
+ */
 export const TOKEN_MAPPING: Record<string, string> = {
   token1: "user1",
   token2: "user2",
@@ -10,7 +13,16 @@ export interface Page {
   status: "published" | "draft";
 }
 
+/**
+ * A list of pages in the database.
+ */
 export const PAGES: Page[] = [
+  {
+    id: "index",
+    slug: "/",
+    title: "Index Page",
+    status: "published",
+  },
   {
     id: "about",
     slug: "/about",

@@ -8,9 +8,9 @@ const IndexPage: FC<{ preview?: any }> = ({ preview }) => {
   return (
     <div>
       <Head>
-        <title>Home{Boolean(preview) ? " (preview)" : ""}</title>
+        <title>Home</title>
       </Head>
-      <h1>Index Page</h1>
+      <h1>Index Page {Boolean(preview) ? " (preview)" : ""}</h1>
       <Navigation />
       <hr />
       <Preview />
@@ -19,3 +19,5 @@ const IndexPage: FC<{ preview?: any }> = ({ preview }) => {
 };
 
 export default IndexPage;
+
+export { getStaticProps } from "../utils";
